@@ -1,5 +1,7 @@
-#include "ParaHandler.h"
+//Class that handles the input parameters. Specifically, the parameters are read from an input file.
+//This code was written by Phillip Albert. 
 
+#include "ParaHandler.h"
 #include <fstream>
 #include <string.h>
 #include <iomanip>
