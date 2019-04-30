@@ -1,3 +1,10 @@
+/* 
+ * File:   matrix.h
+ * Author: Julia Jäger
+ *
+ * Here the entries of the matrix, that describes how the energy in all modes, is calculated.  
+ */
+
 #ifndef MATRIX_H
 #define MATRIX_H
 #include "parameters.h"
