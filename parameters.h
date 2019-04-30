@@ -1,3 +1,10 @@
+/* 
+ * File:   parameters.h
+ * Author: Julia Jäger
+ *
+ * Here the parameters are initialized from the parameter file and some are calculated.   
+ */
+
 #ifndef PARAMETERS_H
 #define PARAMETERS_H
 #include <math.h> 
