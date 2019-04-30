@@ -1,3 +1,6 @@
+//This is the main file that calculates the mean square amplitues of a membrane patch with the parameters specified in the 
+//parameters file and a randomly chosen hexagonal spring configuration. The data is written into output files.
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -23,6 +26,8 @@ int main(int argc, char* argv[])
 
 	cout << "Matrix Size: " << parameters::Msize << endl;
 
+///////////////////////////////////////////////////////////////////////
+// Initialize spring positions and Fourier modes
 	mat cs(2, parameters::Msize, fill::zeros);
 	mat Ras(2, parameters::number_springs, fill::zeros);
 	vec Ka(parameters::number_springs, fill::zeros);
@@ -37,16 +42,19 @@ int main(int argc, char* argv[])
 	}
 	myfile.close();
 
+///////////////////////////////////////////////////////////////////////
+// Set up energy matrix, invert it and calculate the mean squared displacement in Fourier space
 	matrix(M, cs, Ras, Ka);
 
 	cout << "Inverting matrix" << endl;
 
 	mat IM = inv(M);
-
+	
+	//real modes
 	mat amps(parameters::Nx,parameters::Ny);
 	amps(parameters::nx-1,parameters::ny-1)=parameters::kBT*(IM(0,0));   //The zero mode is in the middle: amps(n-1,n-1)
 	amps(parameters::Nx-1,parameters::ny-1)=parameters::kBT*(IM(1,1));
-	amps(parameters::nx-1,parameters::Ny-1)=parameters::kBT*(IM(2,2));    //factor of 2?
+	amps(parameters::nx-1,parameters::Ny-1)=parameters::kBT*(IM(2,2));    
 	amps(parameters::Nx-1,parameters::Ny-1)=parameters::kBT*(IM(3,3));
 
 	int cindex=1;
@@ -89,6 +97,7 @@ int main(int argc, char* argv[])
 	    }
 	}
 
+	//define Fourier modes
 	vec kx(parameters::Nx);
 	vec ky(parameters::Ny);
 	for (int i=1; i<parameters::nx; i++){
@@ -105,8 +114,10 @@ int main(int argc, char* argv[])
 	ky(parameters::Ny-1)=2*M_PI*parameters::ny/parameters::Ly;
 
 
-//////////////////////////////////////////////////////////////////////////7	
-	//amplitudes on the diagonal as function of |k|
+//////////////////////////////////////////////////////////////////////////	
+//Convert mean square amplitudes to 1D plottable data
+	
+//extract diagonal values and plot as function of |k|
 	int xoffset;
 	int yoffset;
 	if (parameters::Nx<parameters::Ny){
@@ -135,9 +146,9 @@ int main(int argc, char* argv[])
 	   }
 	}
         
-	//Average over azimuthal angle
+//Average over azimuthal angle as function of |k|
 
-	//write amps into one vector
+	//write all amps into one vector
 	vec averageamps(parameters::Nx*parameters::Ny);
 	vec ks(parameters::Nx*parameters::Ny);
 	for (int x=0; x<parameters::Nx; x++){
@@ -183,7 +194,9 @@ int main(int argc, char* argv[])
 	}
 
 
-	//Write data to file
+///////////////////////////////////////////////////////////////////////
+// Write data to file
+	
 	ofstream myfile5 (parameters::amplitudesFile.c_str());
 	if (myfile5.is_open())
 	{
