@@ -1,3 +1,12 @@
+/* 
+ * File:   makemodesHexagonal.cpp
+ * Author: Julia Jäger
+ *
+ * Sets up the complex modes and spring positions necessary for the computation of the mean squared displacement of the  
+ * membrane patch. The springs are set up on a hexagonal lattice and additional clusters of springs are added to represent
+ * knobs of the malaria infected RBC. 
+ */
+
 #include "makemodesHexagonal.h"
 #include <iostream>
 #define _USE_MATH_DEFINES 
