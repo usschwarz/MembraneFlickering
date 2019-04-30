@@ -1,5 +1,19 @@
-//Class that handles the input parameters. Specifically, the parameters are read from an input file.
-//This code was written by Phillip Albert. 
+
+/* 
+ * File:   ParaHandler.cpp
+ * Author: bq_palbert
+ *
+ *
+ * Parses parameters defined in a file and stores them.
+ * Arguments given to the program override existing parameters
+ *
+ * If additional shell parameters are used, the parameter file must be the
+ * first argument to the program.
+ * If a request for an undefined parameter is found the program terminates.
+ *
+ * Comments in the parameter file start with #
+ * A parameter consists of a name and a value, both are stored as strings
+ */
 
 #include "ParaHandler.h"
 #include <fstream>
