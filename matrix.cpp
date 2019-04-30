@@ -1,3 +1,10 @@
+/* 
+ * File:   matrix.cpp
+ * Author: Julia Jäger
+ *
+ * Here the entries of the matrix, that describes how the energy in all modes, is calculated.  
+ */
+
 #include <iostream>
 #include <fstream>
 #include <math.h>  
