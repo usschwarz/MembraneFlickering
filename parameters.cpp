@@ -1,4 +1,9 @@
-
+/* 
+ * File:   parameters.cpp
+ * Author: Julia Jäger
+ *
+ * Here the parameters are initialized from the parameter file and some are calculated.   
+ */
 
 #include <math.h> 
 #include "parameters.h"
